@@ -1,17 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UpTimer</title>
+  <title>
+    {% block title %}
+    UpTimer
+    {% endblock %}
+  </title>
+
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
 
-<body>
-  {% block content %}
-  {% endblock %}
+<body class="font-body min-h-screen flex flex-col">
+  <main class="flex-1 flex items-center justify-center px-4 py-8 md:py-16">
+    {% block content %}
+    {% endblock %}
+  </main>
 </body>
 
 </html>

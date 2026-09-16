@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap");
+@layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -9,24 +10,59 @@
       "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --color-slate-300: #cbd5e1;
     --color-slate-400: #64748b;
+    --spacing: 0.25rem;
+    --container-lg: 32rem;
     --radius-lg: 0.5rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --font-display: "Hanken Grotesk", ui-sans-serif, sans-serif;
     --font-body: "Inter", ui-sans-serif, sans-serif;
     --color-surface: #f7f9fb;
+    --color-surface-dim: #d8dadc;
     --color-surface-container-lowest: #ffffff;
     --color-surface-container-low: #f2f4f6;
+    --color-surface-container: #eceef0;
+    --color-surface-container-high: #e6e8ea;
+    --color-surface-container-highest: #e0e3e5;
     --color-on-surface: #191c1e;
+    --color-on-surface-variant: #434655;
+    --color-inverse-surface: #2d3133;
+    --color-inverse-on-surface: #eff1f3;
+    --color-outline: #737686;
+    --color-outline-variant: #c3c6d7;
     --color-on-primary: #ffffff;
     --color-primary-container: #2563eb;
+    --color-on-primary-container: #eeefff;
+    --color-primary-fixed: #dbe1ff;
+    --color-primary-fixed-dim: #b4c5ff;
+    --color-on-primary-fixed: #00174b;
+    --color-on-primary-fixed-variant: #003ea8;
+    --color-secondary-container: #d5e0f8;
+    --color-on-secondary-container: #586377;
+    --color-secondary-fixed: #d8e3fb;
+    --color-secondary-fixed-dim: #bcc7de;
+    --color-on-secondary-fixed: #111c2d;
+    --color-on-secondary-fixed-variant: #3c475a;
+    --color-tertiary-container: #5e6e85;
+    --color-on-tertiary-container: #e9f0ff;
+    --color-tertiary-fixed: #d3e4fe;
+    --color-tertiary-fixed-dim: #b7c8e1;
+    --color-on-tertiary-fixed: #0b1c30;
+    --color-on-tertiary-fixed-variant: #38485d;
     --color-error: #ba1a1a;
+    --color-on-error: #ffffff;
     --color-error-container: #ffdad6;
     --color-on-error-container: #93000a;
     --color-success: #0d7a2e;
+    --color-on-success: #ffffff;
     --color-success-container: #d7f5d7;
     --color-on-success-container: #002106;
+    --color-warning: #8c5000;
+    --color-on-warning: #ffffff;
     --color-warning-container: #ffe3b8;
     --color-on-warning-container: #2e1800;
     --color-navy: #1e293b;
@@ -193,8 +229,74 @@
   .static {
     position: static;
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
   .block {
     display: block;
+  }
+  .flex {
+    display: flex;
+  }
+  .table {
+    display: table;
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  .max-w-lg {
+    max-width: var(--container-lg);
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .border-collapse {
+    border-collapse: collapse;
+  }
+  .resize {
+    resize: both;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .py-8 {
+    padding-block: calc(var(--spacing) * 8);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .transition {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  @media (width >= 48rem) {
+    .md\:py-16 {
+      padding-block: calc(var(--spacing) * 16);
+    }
   }
 }
 :root.dark {
@@ -323,4 +425,22 @@
 .mobile-menu.open {
   max-height: 500px;
   opacity: 1;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-border-style: solid;
+      --tw-outline-style: solid;
+    }
+  }
 }
