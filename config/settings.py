@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "monitors",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ TEMPLATES = [
         },
     },
 ]
+AUTH_USER_MODEL = "accounts.User"
 
 WSGI_APPLICATION = "config.wsgi.application"
 
