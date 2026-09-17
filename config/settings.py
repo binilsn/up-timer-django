@@ -69,6 +69,10 @@ TEMPLATES = [
 ]
 AUTH_USER_MODEL = "accounts.User"
 
+LOGOUT_REDIRECT_URL = "/accounts/login/"
+
+LOGIN_REDIRECT_URL = "/monitors/"
+
 WSGI_APPLICATION = "config.wsgi.application"
 
 
