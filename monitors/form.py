@@ -1,10 +1,9 @@
-from django import forms
-
+from core.form import BaseForm
 from monitors.models import Monitor
 
 
-class MonitorForm(forms.ModelForm):
+class MonitorForm(BaseForm):
     class Meta:
         model = Monitor
 
-        fields = ["name", "url", "interval"]
+        fields = ["name", "url", "interval_seconds"]

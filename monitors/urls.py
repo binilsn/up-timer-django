@@ -4,4 +4,7 @@ from monitors import views
 
 app_name = "monitors"
 
-urlpatterns = [path("", views.index, name="index")]
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("new/", views.create, name="create"),
+]
