@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+  Monitors
+{% endblock %}
+{% block content %}
+  <ul>
+    {% for monitor in monitors %}
+      <li>{{monitor.name}}</li>
+    {% empty %}
+      <li>No monitors found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

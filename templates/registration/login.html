@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<div class="w-full max-w-md space-y-6">
+  <div class="space-y-2">
+    <h1 class="text-[32px] font-semibold leading-10 tracking-[-0.01em] text-navy font-[Hanken_Grotesk]">
+      Log In
+    </h1>
+    <p class="text-body-lg text-slate-400">
+      Access your secure infrastructure dashboard.
+    </p>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="card space-y-6">
+      {% include "components/forms/errors.html" %}
+      <div class="space-y-1.5">
+        {% include "components/forms/input.html" with field=form.username %}
+      </div>
+      <div class="space-y-1 5">
+        {% include "components/forms/input.html" with field=form.password %}
+      </div>
+      <button class="btn btn-primary w-full justify-center" type="submit">Login</button>
+      <p class="text-center text-sm text-slate-400">Don't have an account?</p>
+    </div>
+  </form>
+  {% endblock %}
+</div>
