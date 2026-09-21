@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}
+Monitors
+{% endblock %}
+{% block content %}
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h1 class="text-2xl font-semibold text-navy font-[Hanken_Grotesk]">Nodes</h1>
+    <a href="{% url 'monitors:create' %}" class="btn btn-primary text-xs py-1.5 px-3">Create Node +</a>
+  </div>
+
+  <div id="fleet_status">
+    <div class="card space-y-5">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-divider">
+        <div>
+          <p class="text-[10px] md:text-xs text-slate-400 font-mono uppercase tracking-[0.05em]">Total</p>
+          <p class="text-lg md:text-2xl font-semibold text-navy font-[Hanken_Grotesk] mt-1">
+            0
+          </p>
+        </div>
+        <div>
+          <p class="text-[10px] md:text-xs text-slate-400 font-mono uppercase tracking-[0.05em]">Up</p>
+          <p class="text-lg md:text-2xl font-semibold text-navy font-[Hanken_Grotesk] mt-1">
+            0
+          </p>
+        </div>
+        <div>
+          <p class="text-[10px] md:text-xs text-slate-400 font-mono uppercase tracking-[0.05em]">Down</p>
+          <p class="text-lg md:text-2xl font-semibold text-navy font-[Hanken_Grotesk] mt-1">
+            0
+          </p>
+        </div>
+        <div>
+          <p class="text-[10px] md:text-xs text-slate-400 font-mono uppercase tracking-[0.05em]">Paused</p>
+          <p class="text-lg md:text-2xl font-semibold text-navy font-[Hanken_Grotesk] mt-1">
+            0
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if monitors %}
+  <div class="card space-y-0">
+    <div
+      class="hidden md:grid grid-cols-[40px_1fr_1fr_1fr_100px_80px_80px_80px_100px] gap-2 px-1 py-3 text-[10px] font-semibold uppercase tracking-[0.05em] text-slate-400 font-mono border-b border-divider">
+      <span>#</span>
+      <span>Name</span>
+      <span>URL</span>
+      <span>Tags</span>
+      <span>Interval</span>
+      <span>Timeout</span>
+      <span>Status</span>
+      <span></span>
+      <span>Actions</span>
+    </div>
+    {% for monitor in monitors %}
+    <div
+      class="hidden md:grid md:grid-cols-[40px_1fr_1fr_1fr_100px_80px_80px_80px_100px] gap-2 px-1 py-3 items-center list-row hover:bg-surface-container-low">
+      <span class="text-xs font-mono text-slate-400">
+        {{forloop.counter}}
+      </span>
+      <a class="text-sm font-semibold text-navy hover:underline" href="{% url 'monitors:create' %}">
+        {{monitor.name}}
+      </a>
+      <a class="text-xs text-slate-400 font-mono truncate hover:underline" href="{% url 'monitors:create' %}">
+        {{monitor.url}}
+      </a>
+      <span class="text-xs text-slate-400 font-mono">
+        0
+      </span>
+      <span class="text-xs text-slate-400 font-mono">
+        0
+      </span>
+      <span class="text-xs text-slate-400 font-mono">
+        0
+      </span>
+      <span id="<%= dom_id(node, :status) %>" class="text-[10px]">
+        {% if monitor.is_paused %}
+        Paused
+        {% else %}
+        <span class="{% if monitor.is_up %} chip chip-success {% else %} chip chip-error {% endif %}">{{monitor.status}}
+        </span>
+        {% endif %}
+      </span>
+    </div>
+    <a href="monitors:index"
+      class="md:hidden flex items-center gap-3 px-1 py-3 list-row hover:bg-surface-container-low">
+      <span class="flex-1 min-w-0">
+        <span class="text-sm font-semibold text-navy block">
+          {{monitor.name}}
+        </span>
+        <span class="text-xs text-slate-400 font-mono truncate block">
+          {{monitor.url}}
+        </span>
+      </span>
+      <span class="text-[10px]">
+        {% if monitor.is_paused %}
+        <span class="chip chip-warning">Paused</span>
+        {% else %}
+        <span class="{% if monitor.is_up %} chip chip-success {% else %} chip chip-error {% endif %}">
+          {{monitor.status}}
+        </span>
+        {% endif %}
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="card text-center py-12 text-slate-400">
+    <p class="text-body-lg">No nodes yet.</p>
+    <p class="text-xs mt-1">Click "Create Node" to start monitoring.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

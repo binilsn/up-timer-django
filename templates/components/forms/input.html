@@ -1,0 +1,15 @@
+<div class="mb-4">
+  <label for="{{ field.id_for_label }}" class="input-label block">
+    {{ field.label }}
+  </label>
+
+  {{ field }}
+
+  {% if field.errors %}
+  <div class="text-xs text-error font-mono mt-1">
+    {% for error in field.errors %}
+    <p>{{ error }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>

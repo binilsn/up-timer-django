@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "monitors",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -65,6 +67,13 @@ TEMPLATES = [
         },
     },
 ]
+AUTH_USER_MODEL = "accounts.User"
+
+LOGIN_URL = "login"
+
+LOGIN_REDIRECT_URL = "/monitors/"
+
+LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -118,6 +127,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mx-auto flex flex-col space-y-6 px-4 sm:px-6">
+  <div class="space-y-2">
+    <p class="text-xs font-semibold uppercase tracking-[0.05em] text-slate-400 font-mono">Nodes</p>
+    <h1 class="text-2xl md:text-[32px] font-semibold leading-10 tracking-[-0.01em] text-navy font-[Hanken_Grotesk]">
+      Create Node</h1>
+    <p class="text-body-md text-slate-400">Add a new endpoint to the monitoring cluster.</p>
+  </div>
+
+  <div class="card">
+    <form method="post">
+      {% csrf_token %}
+
+      {% include "components/forms/errors.html" %}
+      <div class="space-y-1.5">
+        {% include "components/forms/input.html" with field=form.name %}
+      </div>
+
+      <div class="space-y-1.5">
+        {% include "components/forms/input.html" with field=form.url %}
+      </div>
+
+      <div class="space-y-1.5">
+        {% include "components/forms/input.html" with field=form.interval_seconds %}
+      </div>
+      <div class="flex gap-3">
+        <button class="btn btn-primary flex-1 justify-center">
+          Save
+        </button>
+        <a href="{% url 'monitors:index' %}" class="btn btn-secondary flex-1 justify-center">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
