@@ -28,5 +28,25 @@ class Monitor(models.Model):
         max_length=20, choices=MonitorStatus, default=MonitorStatus.PENDING
     )
 
+    @property
+    def is_paused(self):
+        return self.status == MonitorStatus.PAUSED
+
+    @property
+    def is_pending(self):
+        return self.status == MonitorStatus.PENDING
+
+    @property
+    def is_up(self):
+        return self.status == MonitorStatus.UP
+
+    @property
+    def is_down(self):
+        return self.status == MonitorStatus.DOWN
+
+    @property
+    def is_checking(self):
+        return self.status == MonitorStatus.CHECKING
+
     def __str__(self):
         return self.name

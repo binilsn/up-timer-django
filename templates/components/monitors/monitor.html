@@ -1,0 +1,55 @@
+<div class="card space-y-4 block hover:border-primary-container/30 transition-colors">
+  <div class="flex items-start justify-between">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-9 h-9 rounded-default bg-primary-container/10 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-primary-container" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        </svg>
+      </div>
+      <div class="min-w-0">
+        <h3 class="text-sm font-semibold text-navy truncate">
+          {{monitor.name}}
+        </h3>
+        <p class="text-[11px] text-slate-400 font-mono truncate">
+          {{monitor.url}}
+        </p>
+      </div>
+    </div>
+    <span class="w-2 h-2 rounded-full {% if monitor.is_paused %} bg-[var(--color-warning)] {% elif monitor.is_up %}
+      bg-primary-container {% else %} bg-error {% endif %} flex-shrink-0 mt-1.5"></span>
+  </div>
+
+  <div class="space-y-2 pt-2 border-t border-divider">
+    <div class="flex justify-between text-xs">
+      <span class="font-mono text-slate-400">Response</span>
+      <span class="font-mono font-semibold text-navy">
+
+      </span>
+    </div>
+    <div class="flex justify-between text-xs">
+      <span class="font-mono text-slate-400">Last Check</span>
+      <span class="font-mono font-semibold text-navy">
+
+      </span>
+    </div>
+    <div class="flex justify-between text-xs">
+      <span class="font-mono text-slate-400">Location</span>
+      <span class="font-mono font-semibold text-navy text-right">
+
+      </span>
+    </div>
+  </div>
+
+  <div class="pt-2 border-t border-divider">
+    <div class="flex justify-between text-xs mb-2">
+      <span class="font-mono text-slate-400">Status</span>
+      <span class="font-mono font-semibold {% if monitor.is_paused %} text-[var(--color-warning)] {% elif monitor.is_up %}
+        text-primary-container {% else %} text-error {% endif %}">{% if monitor.is_paused %} "PAUSED" {% else %}
+        {{monitor.status}} {% endif %}</span>
+    </div>
+
+    <span class="text-[9px] text-slate-400 font-mono">Last 24 checks</span>
+  </div>
+</div>
