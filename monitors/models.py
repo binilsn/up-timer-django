@@ -49,4 +49,4 @@ class Monitor(models.Model):
         return self.status == MonitorStatus.CHECKING
 
     def __str__(self):
-        return self.name
+        return str(self.name)
